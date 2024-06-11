@@ -9,7 +9,7 @@ public class Sort {
 
         int[] integers = new int[N];
 
-        for(int i = 0; i < integers.length; i++) {
+        for (int i = 0; i < integers.length; i++) {
             integers[i] = sc.nextInt();
         }
 
@@ -17,20 +17,20 @@ public class Sort {
 //        bubbleSort(integers, N);
 //        insertionSort(integers, N);
 //        mergeSort(integers, 0, N-1);
-        quickSort(integers, 0, N-1);
+        quickSort(integers, 0, N - 1);
 
         System.out.println();
-        for(int i : integers) {
+        for (int i : integers) {
             System.out.print(i + " ");
         }
     }
 
     private static void selectionSort(int[] integers, int n) {
-        for(int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             int mini = i;
 
-            for(int j = i; j < n; j++)
-                if(integers[j] < integers[mini]) mini = j;
+            for (int j = i; j < n; j++)
+                if (integers[j] < integers[mini]) mini = j;
 
             swap(integers, i, mini);
         }
@@ -38,12 +38,12 @@ public class Sort {
 
     private static void bubbleSort(int[] arr, int n) {
         boolean didSwap = false;
-        for(int i = n - 1; i > 0; i--) {
+        for (int i = n - 1; i > 0; i--) {
 
-            for(int j = 0; j < i; j++)
+            for (int j = 0; j < i; j++)
 
-                if(arr[j] > arr[j+1]) {
-                    swap(arr, j, j+1);
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
                     didSwap = true;
                 }
 
@@ -52,33 +52,33 @@ public class Sort {
     }
 
     private static void insertionSort(int[] arr, int n) {
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             int j = i;
-            while(j > 0 && arr[j-1] > arr[j]) {
-                swap(arr, j-1, j);
+            while (j > 0 && arr[j - 1] > arr[j]) {
+                swap(arr, j - 1, j);
                 j--;
             }
         }
     }
 
     private static void mergeSort(int[] arr, int low, int high) {
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
         int mid = (low + high) / 2;
         mergeSort(arr, low, mid);
-        mergeSort(arr, mid+1, high);
+        mergeSort(arr, mid + 1, high);
         merge(arr, low, mid, high);
     }
 
     private static void merge(int[] arr, int low, int mid, int high) {
         int[] temp = new int[high - low + 1];
         int left = low;
-        int right = mid+1;
+        int right = mid + 1;
 
         int i = 0;
-        while(left <= mid && right <= high) {
-            if(arr[left] <= arr[right]) {
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right]) {
                 temp[i] = arr[left];
                 left++;
             } else {
@@ -88,25 +88,25 @@ public class Sort {
             i++;
         }
 
-        while(left <= mid) {
+        while (left <= mid) {
             temp[i] = arr[left];
             left++;
             i++;
         }
 
-        while(right <= high) {
+        while (right <= high) {
             temp[i] = arr[right];
             right++;
             i++;
         }
 
-        for(int j = low; j <= high; j++) {
+        for (int j = low; j <= high; j++) {
             arr[j] = temp[j - low];
         }
     }
 
     private static void quickSort(int[] arr, int low, int high) {
-        if(low < high) {
+        if (low < high) {
             int pivot = partition(arr, low, high);
             quickSort(arr, low, pivot - 1);
             quickSort(arr, pivot + 1, high);
@@ -119,9 +119,9 @@ public class Sort {
         int j = high;
 
         while (i < j) {
-            while(arr[i] <= pivot && i <= high-1) i++;
+            while (arr[i] <= pivot && i <= high - 1) i++;
 
-            while(arr[j] > pivot && j >= low+1) j--;
+            while (arr[j] > pivot && j >= low + 1) j--;
 
             if (i < j) swap(arr, i, j);
 
