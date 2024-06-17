@@ -15,9 +15,11 @@ public class Sort {
 
 //        selectionSort(integers, N);
 //        bubbleSort(integers, N);
+//        bubbleSortRecursive(integers, N - 1);
 //        insertionSort(integers, N);
+        insertionSortRecursive(integers, 0);
 //        mergeSort(integers, 0, N-1);
-        quickSort(integers, 0, N - 1);
+//        quickSort(integers, 0, N - 1);
 
         System.out.println();
         for (int i : integers) {
@@ -51,6 +53,17 @@ public class Sort {
         }
     }
 
+    private static void bubbleSortRecursive(int[] arr, int n) {
+        if (n == 0)
+            return;
+
+        for (int j = 0; j < n; j++) {
+            if (arr[j] > arr[j + 1]) swap(arr, j, j + 1);
+        }
+
+        bubbleSortRecursive(arr, n - 1);
+    }
+
     private static void insertionSort(int[] arr, int n) {
         for (int i = 0; i < n; i++) {
             int j = i;
@@ -59,6 +72,19 @@ public class Sort {
                 j--;
             }
         }
+    }
+
+    private static void insertionSortRecursive(int[] arr, int n) {
+        if (n == arr.length)
+            return;
+
+        int j = n;
+        while (j > 0 && arr[j] < arr[j - 1]) {
+            swap(arr, j - 1, j);
+            j--;
+        }
+
+        insertionSortRecursive(arr, n + 1);
     }
 
     private static void mergeSort(int[] arr, int low, int high) {
