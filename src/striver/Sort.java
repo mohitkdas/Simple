@@ -1,4 +1,4 @@
-package sort;
+package striver;
 
 import java.util.Scanner;
 
